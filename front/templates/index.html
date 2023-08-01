@@ -1,1 +1,111 @@
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fish Species Prediction</title>
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: background-color 2s ease;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="outer-box">
+        <h1>Fish Species Prediction</h1>
+        <form action="/predict" method="post">
+            <div class="form-group">
+                <label for="Length1">Length1:</label>
+                <input type="text" id="Length1" name="Length1" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Length2">Length2:</label>
+                <input type="text" id="Length2" name="Length2" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Length3">Length3:</label>
+                <input type="text" id="Length3" name="Length3" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Height">Height:</label>
+                <input type="text" id="Height" name="Height" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="Width">Width:</label>
+                <input type="text" id="Width" name="Width" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Predict" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function getRandomLightColor() {
+            const letters = '89ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * letters.length)];
+            }
+            return color;
+        }
+
+        function changeOuterBoxColor() {
+            const outerBox = document.getElementById('outer-box');
+            const newColor = getRandomLightColor();
+            outerBox.style.backgroundColor = newColor;
+        }
+
+        setInterval(changeOuterBoxColor, 5000);
+    </script>
+</body>
+</html>
