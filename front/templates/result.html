@@ -2,6 +2,98 @@
 <html>
 <head>
     <title>Prediction Result</title>
+    <script src="https://unpkg.com/element-behaviors@3.1.0/dist/global.js"></script>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden; /* Hide any overflow to prevent scrollbars */
+        }
+
+        h1 {
+            font-size: 36px;
+            text-align: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            position: relative; /* Add relative positioning to the header */
+            z-index: 2; /* Set the z-index to bring the text in front of the sparkles container */
+        }
+
+        p {
+            font-size: 24px;
+            text-align: center;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 10px;
+            position: relative; /* Add relative positioning to the paragraph */
+            z-index: 2; /* Set the z-index to bring the text in front of the sparkles container */
+        }
+
+        .sparkle-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Set the z-index lower than the text to keep it in the background */
+            pointer-events: none; /* Make sure the sparkles container does not block interactions with text */
+        }
+
+        .sparkle {
+            position: absolute;
+            border-radius: 100%;
+            background: #fff;
+            pointer-events: none; /* Make sure the sparkles do not block interactions with text */
+            animation-name: sparkles;
+            animation-timing-function: linear;
+            animation-iteration-count: infinite;
+        }
+
+        .sparkle1 {animation-duration: 0.5s}
+        .sparkle2 {animation-duration: 0.8s}
+        .sparkle3 {animation-duration: 1s}
+        .sparkle4 {animation-duration: 1.4s}
+        .sparkle5 {animation-duration: 1.8s}
+        .sparkle6 {animation-duration: 2s}
+
+        @keyframes sparkles {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, 0) rotateZ(0); /* Start from the left side */
+            }
+            100% {
+                opacity: 0;
+                transform: translate(50%, -100vh) rotateZ(360deg); /* Move to the right side */
+            }
+        }
+    </style>
+    <script>
+        function createSparkles() {
+            const container = document.createElement('div');
+            container.classList.add('sparkle-container');
+            document.body.appendChild(container);
+
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.classList.add('sparkle' + (Math.round((Math.random() * (6-1))) + 1));
+                sparkle.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+                sparkle.style.top = Math.random() * 100 + 'vh'; // Random vertical position
+                sparkle.style.animationDelay = Math.random() + 's';
+                container.appendChild(sparkle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            createSparkles();
+        });
+    </script>
 </head>
 <body>
     <h1>Prediction Result</h1>
